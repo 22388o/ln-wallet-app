@@ -5,6 +5,9 @@
       "bundler": "metro"
     },
     "name": "react-native-expo",
-    "slug": "react-native-expo"
+    "slug": "react-native-expo",
+    "extra": {
+      "apiKey": "test"
+    }
   }
 }
