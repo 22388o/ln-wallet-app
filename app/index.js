@@ -8,13 +8,6 @@ export default function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen 
-        options={{
-          headerStyle: { backgroundColor: "black" },
-          headerTitle: "",
-          headerShadowVisible: false, 
-        }} 
-      />
       <View>
         <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.button}

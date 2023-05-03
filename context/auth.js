@@ -1,5 +1,10 @@
 import { useRouter, useSegments } from "expo-router";
 import React from "react";
+import Constants from 'expo-constants';
+
+const validEmail = Constants.manifest.extra.email;
+const validPassword = Constants.manifest.extra.password;
+
 
 const AuthContext = React.createContext(null);
 
@@ -35,10 +40,20 @@ export function Provider(props) {
 
   useProtectedRoute(user);
 
+  const signIn = (email, password) => {
+    // Authenticate user with email and password.
+    if (email === validEmail && password === validPassword) {
+      setAuth({ email }); // Set user info
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => setAuth({}),
+        signIn,
         signOut: () => setAuth(null),
         user,
       }}

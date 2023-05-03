@@ -1,9 +1,17 @@
-import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput } from "react-native";
 import { Stack } from "expo-router";
 import { useAuth } from "../../context/auth";
+import { useState } from 'react'
 
 export default function SignIn() {
   const { signIn } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignIn = () => {
+    signIn(email.toLocaleLowerCase(), password);
+  }
+
 
 return (
   <SafeAreaView style={styles.container}>
@@ -15,26 +23,32 @@ return (
       }} 
     />
     <View>
-      <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button}
-            onPress={() => signIn()
-            }>
-              <Text style={styles.text}>
-                Sign In
-              </Text>
-            </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <Text style={styles.textInputLabel}>Email</Text>
+          <TextInput 
+            style={styles.textInput} 
+            value={email}
+            onChangeText={setEmail}
+          />
+          <Text style={styles.textInputLabel}>Password</Text>
+          <TextInput 
+            style={styles.textInput} 
+            secureTextEntry={true}
+            value={password}
+            onChangeText={setPassword}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={styles.button}
+            onPress={handleSignIn}
+          >
+            <Text style={styles.text}>
+              Sign In
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button}
-            onPress={() => {
-            router.push("/(auth)/sign-up");
-            }}>
-              <Text style={styles.text}>
-                Sign Up
-              </Text>
-            </TouchableOpacity>
-      </View>
-    </View>
   </SafeAreaView>
 )
 }
@@ -48,7 +62,8 @@ container: {
 },
 buttonContainer: {
   justifyContent: 'center',
-  height: 100
+  alignItems: 'center',
+  height: 140
 },
 button: {
   alignItems: 'center',
@@ -60,8 +75,21 @@ button: {
 text: {
   fontSize: 24,
 },
-countContainer: {
-  alignItems: 'center',
+textInput:{
+  height: 40,
+  margin: 12,
+  borderWidth: 1,
+  borderColor: 'white',
+  borderRadius: 10,
+  color: 'white',
+  width: 240,
   padding: 10,
+  fontSize: 20,
+  alignSelf: 'center',
+  textAlign: 'center',
+},
+textInputLabel: {
+  color: 'white',
+  fontSize: 24,
 },
 });

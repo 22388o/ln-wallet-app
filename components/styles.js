@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     borderColor: 'white',
+    borderRadius: 10,
     color: 'white',
     width: 240,
     padding: 10,
@@ -105,18 +106,38 @@ export const styles = StyleSheet.create({
     margin: 10,
     
   },
-  Copybutton: {
-    alignItems: 'center',
+  copyButton: {
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems:'center',
     backgroundColor: '#DDDDDD',
     padding: 10,
     borderRadius: 10,
-    width: 100,
+    width: 160,
     margin: 10,
-    alignSelf: 'center',
+    
+  },
+  copyButtonText: {
+    fontSize: 20,
+    marginRight: 12,
+  },
+  sendButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    borderRadius: 10,
+    width: 160,
+    margin: 10,
+    
+  },
+  sendButtonText: {
+    fontSize: 20,
+    marginRight: 12,
   },
   buttonText: {
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'center',
   }
 });

@@ -5,10 +5,12 @@ import { styles } from '../components/styles';
 import Constants from 'expo-constants';
 import * as Clipboard from 'expo-clipboard';
 import { Link, Stack, useRouter } from "expo-router";
+import { Feather } from '@expo/vector-icons';
 
 
 const apiKey = Constants.manifest.extra.apiKey;
 const adminKey = Constants.manifest.extra.adminKey;
+
 
 export default function Wallet() {
   const [invoice, setInvoice] = useState();
@@ -109,13 +111,6 @@ export default function Wallet() {
 
   return (
     <SafeAreaView style={styles.container}>
-            <Stack.Screen 
-        options={{
-          headerStyle: { backgroundColor: "black" },
-          headerTitle: "",
-          headerShadowVisible: false, 
-        }} 
-      />
               <Modal
                 animationType="slide"
                 transparent={true}
@@ -129,17 +124,18 @@ export default function Wallet() {
                   <Text style={styles.header}>SEND SATS</Text>
                   <Text style={styles.subheadline}>Enter Invoice</Text>
                   <TextInput 
-                  style={styles.textInput}
+                  style={styles.textInputAmount}
                   onChangeText={onChangeText}
                   value={text} />
                   <View style={styles.container2}>
                     <TouchableOpacity
-                    style={styles.button}
+                    style={styles.sendButton}
                     onPress={send}>
-                    <Text style={styles.buttonText}>Send</Text>
+                    <Text style={styles.sendButtonText}>Send</Text>
+                    <Feather name="send" size={24} color="black" />
                     </TouchableOpacity>
                     <TouchableOpacity
-                    style={styles.button}
+                    style={styles.Invoicebuttons}
                     onPress={closeModal}>
                     <Text style={styles.buttonText}>Close</Text>
                     </TouchableOpacity>
@@ -156,14 +152,16 @@ export default function Wallet() {
         <Image style={styles.logo} source={require('../assets/retriever-square.jpg')} />          
         <View style={styles.container2}>
                 <TouchableOpacity
-                  style={styles.button}
+                  style={styles.sendButton}
                   onPress={openInvoiceModal}>
-                  <Text style={styles.buttonText}>Recieve</Text>
+                  <Text style={styles.sendButtonText}>Recieve</Text>
+                  <Feather name="arrow-down-left" size={24} color="black" />
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.button}
+                  style={styles.sendButton}
                   onPress={sendPayment}>
-                  <Text style={styles.buttonText}>Send</Text>
+                  <Text style={styles.sendButtonText}>Send</Text>
+                  <Feather name="send" size={24} color="black" />
                 </TouchableOpacity>
           </View>
         </View>
@@ -186,9 +184,10 @@ export default function Wallet() {
                     </Text>
                     <View style={styles.container2}>
             <TouchableOpacity 
-              style={styles.Invoicebuttons}
+              style={styles.copyButton}
               onPress={copyToClipboard}>
-              <Text style={styles.buttonText}>Copy</Text>
+              <Text style={styles.copyButtonText}>Copy
+              </Text><Feather name="copy" size={24} color="black" />
             </TouchableOpacity>
             <TouchableOpacity
                     style={styles.Invoicebuttons}
