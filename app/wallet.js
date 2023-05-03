@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { Text, View, Button, Image, TouchableOpacity, Modal, TextInput, SafeAreaView } from 'react-native';
+import retriever from "../assets/retriever.svg"
 import { styles } from '../components/styles';
 import Constants from 'expo-constants';
 import * as Clipboard from 'expo-clipboard';
+import { Link, Stack, useRouter } from "expo-router";
+
 
 const apiKey = Constants.manifest.extra.apiKey;
 const adminKey = Constants.manifest.extra.adminKey;
 
-export default function Home() {
+export default function Wallet() {
   const [invoice, setInvoice] = useState();
   const [balance, setBalance] = useState();
   const [name, setName] = useState();
@@ -105,7 +108,14 @@ export default function Home() {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+            <Stack.Screen 
+        options={{
+          headerStyle: { backgroundColor: "black" },
+          headerTitle: "",
+          headerShadowVisible: false, 
+        }} 
+      />
               <Modal
                 animationType="slide"
                 transparent={true}
@@ -143,7 +153,7 @@ export default function Home() {
         <View style={styles.headerContainer}>
         <Text style={styles.header}>{name}</Text>
         <Text style={styles.balance}>{balance} sats</Text>
-        <Image style={styles.logo} source={require('../assets/retriever.png')} />          
+        <Image style={styles.logo} source={require('../assets/retriever-square.jpg')} />          
         <View style={styles.container2}>
                 <TouchableOpacity
                   style={styles.button}
@@ -211,6 +221,6 @@ export default function Home() {
               </SafeAreaView>
               </View> 
               </Modal>
-    </View>
+    </SafeAreaView>
   );
 }

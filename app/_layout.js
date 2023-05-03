@@ -1,7 +1,11 @@
-import { Stack } from 'expo-router'
+import { Stack } from "expo-router";
+import { Provider } from "../context/auth";
 
-const Layout = () => {
-    return <Stack />
+export default function Root() {
+  return (
+    // Setup the auth context and render our layout inside of it.
+    <Provider>
+      <Stack />
+    </Provider>
+  );
 }
-
-export default Layout
