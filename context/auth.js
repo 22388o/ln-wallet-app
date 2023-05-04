@@ -38,7 +38,6 @@ export function Provider(props) {
   useProtectedRoute(user);
 
   const signIn = async (email, password) => {
-    console.log(email, password)
     const response = await fetch('https://user-api-sigma.vercel.app/api/signin', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -49,6 +48,7 @@ export function Provider(props) {
 
     if (response.ok) {
       const { user } = await response.json();
+      console.log("Login API response received. Authenticating user credentials ")
       const validEmail = user.email
       const validPassword = user.password
     // Authenticate user with email and password.
@@ -63,6 +63,7 @@ export function Provider(props) {
     });
   
     if (email === validEmail && (await passwordMatch)) {
+      console.log("Success! User logged in")
       setAuth(user); // Set user info
       return true;
     } else {
