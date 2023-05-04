@@ -1,9 +1,6 @@
 import { useRouter, useSegments } from "expo-router";
 import React from "react";
-import Constants from 'expo-constants';
-
-const validEmail = Constants.manifest.extra.email;
-const validPassword = Constants.manifest.extra.password;
+import { compare } from "react-native-bcrypt"
 
 
 const AuthContext = React.createContext(null);
@@ -40,15 +37,39 @@ export function Provider(props) {
 
   useProtectedRoute(user);
 
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
+    console.log(email, password)
+    const response = await fetch('https://user-api-sigma.vercel.app/api/signin', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      const { user } = await response.json();
+      const validEmail = user.email
+      const validPassword = user.password
     // Authenticate user with email and password.
-    if (email === validEmail && password === validPassword) {
-      setAuth({ email }); // Set user info
+    const passwordMatch = new Promise((resolve, reject) => {
+      compare(password, validPassword, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  
+    if (email === validEmail && (await passwordMatch)) {
+      setAuth(user); // Set user info
       return true;
     } else {
       return false;
     }
   };
+}
 
   return (
     <AuthContext.Provider

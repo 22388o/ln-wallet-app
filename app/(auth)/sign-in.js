@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import { useAuth } from "../../context/auth";
 import { useState } from 'react'
 
+
 export default function SignIn() {
   const { signIn } = useAuth();
   const [email, setEmail] = useState("");

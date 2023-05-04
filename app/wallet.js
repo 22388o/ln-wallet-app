@@ -1,16 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Text, View, Button, Image, TouchableOpacity, Modal, TextInput, SafeAreaView } from 'react-native';
-import retriever from "../assets/retriever.svg"
 import { styles } from '../components/styles';
-import Constants from 'expo-constants';
 import * as Clipboard from 'expo-clipboard';
-import { Link, Stack, useRouter } from "expo-router";
 import { Feather } from '@expo/vector-icons';
-
-
-const apiKey = Constants.manifest.extra.apiKey;
-const adminKey = Constants.manifest.extra.adminKey;
-
+import { useAuth } from "../context/auth"
 
 export default function Wallet() {
   const [invoice, setInvoice] = useState();
@@ -21,6 +14,7 @@ export default function Wallet() {
   const [text, onChangeText] = useState('');
   const [invoiceText, onChangeInvoiceText] = useState('');
   const [message, setMessage] = useState('');
+  const { user } = useAuth();
 
   const copyToClipboard = async () => {
     await Clipboard.setStringAsync(invoice);
@@ -32,7 +26,7 @@ export default function Wallet() {
       const res = await fetch('https://legend.lnbits.com/api/v1/payments', {
         method: 'POST',
         headers: {
-            'X-Api-Key': apiKey,
+            'X-Api-Key': user.apiKey ,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -57,11 +51,13 @@ export default function Wallet() {
   }
 
   const send = async () => {
+    
     try {
+      if(text !== ''){
       const response = await fetch('https://legend.lnbits.com/api/v1/payments', {
         method: 'POST',
         headers: {
-          'X-Api-Key': adminKey,
+          'X-Api-Key': user.adminKey,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -69,10 +65,14 @@ export default function Wallet() {
           bolt11: text,
         })
       });
-    } catch (error) {
+      setMessage("Payment Sent!")
+    }
+    setMessage("Invoice Missing!")
+  }catch (error) {
+      setMessage("Error Sending Payment!")
       console.error(error);
   }
-    setMessage("Payment Sent!")
+    
     getBalance()
   }
 
@@ -81,7 +81,7 @@ export default function Wallet() {
       const res = await fetch('https://legend.lnbits.com/api/v1/wallet', {
         method: 'GET',
         headers: {
-            'X-Api-Key': apiKey,
+            'X-Api-Key': user.apiKey,
             'Content-Type': 'application/json'
         }
       })
@@ -95,12 +95,13 @@ export default function Wallet() {
     }}
 
   const closeModal = () =>{
+      setMessage('')
       setModalVisible(!modalVisible)
       getBalance()
     }
   const closeModal2 = () =>{
       setModal2Visible(!modal2Visible)
-      setInvoice(!invoice)
+      onChangeInvoiceText('')
       getBalance()
     }
 
@@ -177,7 +178,7 @@ export default function Wallet() {
                 <View style={styles.modal}>
                 <SafeAreaView>
                   <Text style={styles.header}>RECEIVE SATS</Text>
-                  {invoice ? <>
+                  {invoice && invoice !== " " ? <>
                   <Text style={styles.subheadline}>{invoiceText} Sat Invoice Created</Text>
                     <Text style={styles.invoice}>
                     {invoice}
