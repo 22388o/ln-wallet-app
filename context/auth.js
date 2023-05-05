@@ -24,12 +24,24 @@ function useProtectedRoute(user) {
       !inAuthGroup
     ) {
       // Redirect to the sign-in page.
-      router.replace("/sign-in");
+      router.replace("/authenticate");
     } else if (user && inAuthGroup) {
       // Redirect away from the sign-in page.
       router.replace("/");
     }
   }, [user, segments]);
+}
+
+export const signUp = async (email, password, profilePhoto, apiKey, adminKey) => {
+  const response = await fetch('https://user-api-sigma.vercel.app/api/signup', {
+    method: 'POST',
+    body: JSON.stringify({ email, password, profilePhoto, apiKey, adminKey }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = response.json()
+  console.log(data)
 }
 
 export function Provider(props) {
@@ -76,6 +88,7 @@ export function Provider(props) {
     <AuthContext.Provider
       value={{
         signIn,
+        signUp,
         signOut: () => setAuth(null),
         user,
       }}

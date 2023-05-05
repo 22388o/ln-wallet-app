@@ -139,5 +139,8 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     textAlign: 'center',
-  }
+  },
+  modalContainer: {
+    flex: 1,
+  },
 });

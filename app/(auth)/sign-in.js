@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Stack } from "expo-router";
 import { useAuth } from "../../context/auth";
 import { useState } from 'react'
@@ -15,46 +15,55 @@ export default function SignIn() {
 
 
 return (
-  <SafeAreaView style={styles.container}>
-    <Stack.Screen 
-      options={{
-        headerStyle: { backgroundColor: "black" },
-        headerTitle: "",
-        headerShadowVisible: false, 
-      }} 
-    />
-    <View>
-        <View style={styles.buttonContainer}>
-          <Text style={styles.textInputLabel}>Email</Text>
-          <TextInput 
-            style={styles.textInput} 
-            value={email}
-            onChangeText={setEmail}
+  <KeyboardAvoidingView
+    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    style={styles.modalContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={styles.container}>
+        <Stack.Screen 
+        options={{
+          headerStyle: { backgroundColor: "black" },
+          headerTitle: "",
+          headerShadowVisible: false, 
+          }} 
           />
-          <Text style={styles.textInputLabel}>Password</Text>
-          <TextInput 
-            style={styles.textInput} 
-            secureTextEntry={true}
-            value={password}
-            onChangeText={setPassword}
-          />
+        <View>
+          <View style={styles.buttonContainer}>
+            <Text style={styles.textInputLabel}>Email</Text>
+            <TextInput 
+              style={styles.textInput} 
+              value={email}
+              onChangeText={setEmail}
+            />
+            <Text style={styles.textInputLabel}>Password</Text>
+            <TextInput 
+              style={styles.textInput} 
+              secureTextEntry={true}
+              value={password}
+              onChangeText={setPassword}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity 
+              style={styles.button}
+              onPress={handleSignIn}
+            >
+              <Text style={styles.text}>
+                Sign In
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity 
-            style={styles.button}
-            onPress={handleSignIn}
-          >
-            <Text style={styles.text}>
-              Sign In
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-  </SafeAreaView>
-)
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
+  </KeyboardAvoidingView>
+  )
 }
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+  },
 container: {
   flex: 1,
   justifyContent: 'center',

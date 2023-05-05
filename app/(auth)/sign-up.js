@@ -1,14 +1,127 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Stack } from "expo-router";
+import { useAuth } from "../../context/auth";
+import { useState } from 'react'
 
-const Signup = () => {
-  return (
-    <View>
-      <Text>
-        Sign Up
-      </Text>
-    </View>
+
+export default function SignIn() {
+  const { signUp } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [profilePhoto, setProfilePhoto] = useState("");
+  const [apiKey, setApiKey] = useState("");
+  const [adminKey, setAdminKey] = useState("");
+
+  const handleSignUp = () => {
+    signUp(email.toLocaleLowerCase(), password, profilePhoto, apiKey, adminKey);
+  }
+
+
+return (
+  <KeyboardAvoidingView
+    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    style={styles.modalContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={styles.container}>
+        <Stack.Screen 
+        options={{
+          headerStyle: { backgroundColor: "black" },
+          headerTitle: "",
+          headerShadowVisible: false, 
+          }} 
+          />
+        <View>
+          <View style={styles.buttonContainer}>
+            <Text style={styles.textInputLabel}>Email</Text>
+            <TextInput 
+              style={styles.textInput} 
+              value={email}
+              onChangeText={setEmail}
+            />
+            <Text style={styles.textInputLabel}>Password</Text>
+            <TextInput 
+              style={styles.textInput} 
+              secureTextEntry={true}
+              value={password}
+              onChangeText={setPassword}
+            />
+            <Text style={styles.textInputLabel}>Profile Photo</Text>            
+            <TextInput 
+              style={styles.textInput} 
+              value={profilePhoto}
+              onChangeText={setProfilePhoto}
+            />
+            <Text style={styles.textInputLabel}>API KEY</Text>           
+            <TextInput 
+              style={styles.textInput} 
+              secureTextEntry={true}
+              value={apiKey}
+              onChangeText={setApiKey}
+            />
+            <Text style={styles.textInputLabel}>Admin Key</Text>
+            <TextInput 
+              style={styles.textInput} 
+              secureTextEntry={true}
+              value={adminKey}
+              onChangeText={setAdminKey}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity 
+              style={styles.button}
+              onPress={handleSignUp}
+            >
+              <Text style={styles.text}>
+                Sign Up
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
+  </KeyboardAvoidingView>
   )
 }
 
-export default Signup
+const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+  },
+container: {
+  flex: 1,
+  justifyContent: 'start',
+  alignItems: 'center',
+  backgroundColor: 'black'
+},
+buttonContainer: {
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+button: {
+  alignItems: 'center',
+  backgroundColor: '#DDDDDD',
+  padding: 10,
+  borderRadius: 10,
+  width: 120,
+},
+text: {
+  fontSize: 20,
+},
+textInput:{
+  height: 40,
+  margin: 12,
+  borderWidth: 1,
+  borderColor: 'white',
+  borderRadius: 10,
+  color: 'white',
+  width: 240,
+  padding: 10,
+  fontSize: 14,
+  alignSelf: 'center',
+  textAlign: 'center',
+},
+textInputLabel: {
+  color: 'white',
+  fontSize: 14,
+},
+});

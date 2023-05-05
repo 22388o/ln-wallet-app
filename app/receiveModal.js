@@ -1,53 +1,44 @@
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
-import { useState } from 'react';
-import { useNavigation, useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import * as Clipboard from 'expo-clipboard';
-import { Feather } from '@expo/vector-icons';
-import { styles } from '../components/styles';
-import useGetBalance from "../hooks/useGetBalance"
+import { View, Text, TouchableOpacity, TextInput, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native"
+import { useState } from 'react'
+import { useNavigation, useRouter } from "expo-router"
+import { StatusBar } from "expo-status-bar"
+import * as Clipboard from 'expo-clipboard'
+import { Feather } from '@expo/vector-icons'
+import { styles } from '../components/styles'
+import { getBalance } from "../hooks/getBalance"
 import { useAuth } from "../context/auth"
+import { generateInvoice } from "../hooks/generateInvoice"
+
 
 
 export default function Modal() {
-    const [invoice, setInvoice] = useState();
-    const [invoiceText, onChangeInvoiceText] = useState('');
-    const navigation = useNavigation();
+    const [invoice, setInvoice] = useState()
+    const [invoiceText, onChangeInvoiceText] = useState('')
+    const navigation = useNavigation()
     const router = useRouter()
-    const { user } = useAuth();
+    const { user } = useAuth()
 
   // If the page was reloaded or navigated to directly, then the modal should be presented as
   // a full screen page. You may need to change the UI to account for this.
-    const isPresented = navigation.canGoBack();
+  const isPresented = navigation.canGoBack()
 
   const copyToClipboard = async () => {
-    await Clipboard.setStringAsync(invoice);
+    await Clipboard.setStringAsync(invoice)
     alert('COPIED!')
   };
 
-  const generateInvoice = async () => {
-    try{
-      const res = await fetch('https://legend.lnbits.com/api/v1/payments', {
-        method: 'POST',
-        headers: {
-            'X-Api-Key': user.apiKey ,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "out": false,
-            "amount": invoiceText,
-            "memo": "test"
-        })
-    })
-      const data = await res.json()
-      const invoiceHash = data.payment_request
-      setInvoice(invoiceHash)
-    }catch(error){
-      console.error(error)
-    }}
+  const onPressGenerateInvoice = async () => {
+    const invoiceHash = await generateInvoice(user, invoiceText)
+    setInvoice(invoiceHash)
+  };
+  
 
 
     return (
+      <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.modalContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.modal}>
         {isPresented && 
             <>
@@ -83,7 +74,7 @@ export default function Modal() {
               <View style={styles.container2}>
                 <TouchableOpacity
                   style={styles.Invoicebuttons}
-                  onPress={generateInvoice}
+                  onPress={onPressGenerateInvoice}
                 >
                 <Text style={styles.sendButtonText}>Create Invoice</Text>
                 </TouchableOpacity>
@@ -103,5 +94,7 @@ export default function Modal() {
           }
           <StatusBar style="light" />
         </View>
+        </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }

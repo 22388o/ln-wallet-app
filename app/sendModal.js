@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useState } from 'react';
 import { useNavigation, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from '@expo/vector-icons';
 import { styles } from '../components/styles';
-import useGetBalance from "../hooks/useGetBalance"
+// import useGetBalance from "../hooks/useGetBalance"
 import { useAuth } from "../context/auth"
 
 
@@ -43,6 +43,10 @@ export default function Modal() {
 
 
     return (
+      <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.modalContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.modal}>
         {isPresented && 
             <>
@@ -75,8 +79,10 @@ export default function Modal() {
                 </Text>
             </View>
             </>
-      }
-      <StatusBar style="light" />
-    </View>
-  );
+          }
+          <StatusBar style="light" />
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  )
 }

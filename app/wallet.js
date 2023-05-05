@@ -1,24 +1,34 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { Text, View, TouchableOpacity, SafeAreaView, RefreshControl, ScrollView, } from 'react-native';
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { Text, View, TouchableOpacity, SafeAreaView, RefreshControl, ScrollView, } from 'react-native'
 import { useRouter } from "expo-router"
 import { Image } from 'expo-image'
-import { styles } from '../components/styles';
-import { Feather } from '@expo/vector-icons';
+import { styles } from '../components/styles'
+import { Feather } from '@expo/vector-icons'
 import { useAuth } from "../context/auth"
-import useGetBalance from "../hooks/useGetBalance"
+import { getBalance } from "../hooks/getBalance"
 
 export default function Wallet() {
   const [refreshing, setRefreshing] = useState(false)
   const { user } = useAuth()
   const router = useRouter()
-  const [name, balance] = useGetBalance(refreshing)
+  const [name, setName] = useState('')
+  const [balance, setBalance] = useState('')
 
   const onRefresh = useCallback(() => {
-    setRefreshing(true);
+    setRefreshing(true)
+    useGetBalance()
     setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
-  }, []);
+      setRefreshing(false)
+    }, 2000)
+  }, [])
+
+  const useGetBalance = async () => {
+    const [walletName, walletBalance] = await getBalance(user)
+    setName(walletName)
+    setBalance(walletBalance)
+  }
+
+  useGetBalance()
 
   return (
     <SafeAreaView style={styles.container}>
