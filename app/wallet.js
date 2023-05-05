@@ -40,7 +40,10 @@ export default function Wallet() {
         <View style={styles.headerContainer}>
         <Text style={styles.header}>{name}</Text>
         <Text style={styles.balance}>{balance} sats</Text>
-        <Image style={styles.logo} source={user.profilePhoto} />          
+        <Image 
+        style={styles.logo} 
+        source={user.profilePhoto} 
+        contentFit="contain"/>
         <View style={styles.container2}>
                 <TouchableOpacity
                   style={styles.sendButton}

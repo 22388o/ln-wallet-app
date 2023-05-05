@@ -83,8 +83,8 @@ export const styles = StyleSheet.create({
   },
     logo: {
     alignSelf: 'center',
-    height: 180,
-    width: 140,
+    height: 200,
+    width: 200,
     marginTop:40,
     marginBottom:30
   }, 

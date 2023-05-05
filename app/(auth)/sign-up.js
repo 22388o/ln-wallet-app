@@ -32,37 +32,42 @@ return (
           />
         <View>
           <View style={styles.buttonContainer}>
-            <Text style={styles.textInputLabel}>Email</Text>
             <TextInput 
               style={styles.textInput} 
               value={email}
+              placeholder="Email"
+              placeholderTextColor="white"
               onChangeText={setEmail}
             />
-            <Text style={styles.textInputLabel}>Password</Text>
             <TextInput 
               style={styles.textInput} 
               secureTextEntry={true}
               value={password}
+              placeholder="Password"
+              placeholderTextColor="white"
               onChangeText={setPassword}
             />
-            <Text style={styles.textInputLabel}>Profile Photo</Text>            
             <TextInput 
               style={styles.textInput} 
               value={profilePhoto}
+              placeholder="Profile photo url"
+              placeholderTextColor="white"
               onChangeText={setProfilePhoto}
             />
-            <Text style={styles.textInputLabel}>API KEY</Text>           
             <TextInput 
               style={styles.textInput} 
               secureTextEntry={true}
               value={apiKey}
+              placeholder="LNbits API Key"
+              placeholderTextColor="white"
               onChangeText={setApiKey}
             />
-            <Text style={styles.textInputLabel}>Admin Key</Text>
             <TextInput 
               style={styles.textInput} 
               secureTextEntry={true}
               value={adminKey}
+              placeholder="LNbits Admin Key"
+              placeholderTextColor="white"
               onChangeText={setAdminKey}
             />
           </View>
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
   },
 container: {
   flex: 1,
-  justifyContent: 'start',
+  justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: 'black'
 },
@@ -105,18 +110,18 @@ button: {
   width: 120,
 },
 text: {
-  fontSize: 20,
+  fontSize: 24,
 },
 textInput:{
   height: 40,
-  margin: 12,
+  margin: 10,
   borderWidth: 1,
   borderColor: 'white',
   borderRadius: 10,
   color: 'white',
   width: 240,
   padding: 10,
-  fontSize: 14,
+  fontSize: 20,
   alignSelf: 'center',
   textAlign: 'center',
 },

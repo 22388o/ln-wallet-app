@@ -40,8 +40,9 @@ export const signUp = async (email, password, profilePhoto, apiKey, adminKey) =>
       'Content-Type': 'application/json'
     }
   });
-  const data = response.json()
-  console.log(data)
+  if(response.ok){
+    router.replace('/sign-in')
+  }
 }
 
 export function Provider(props) {
