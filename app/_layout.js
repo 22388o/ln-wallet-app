@@ -37,6 +37,16 @@ export default function Root() {
           headerStyle: { backgroundColor: "black" },
         }}
       />
+      <Stack.Screen
+        name="settingsModal"
+        options={{
+          // Set the presentation mode to modal for our modal route.
+          presentation: "modal",
+          headerTitle: "",
+          headerTintColor: 'white',
+          headerStyle: { backgroundColor: "black" },
+        }}
+      />
     </Stack>
     </Provider>
   );

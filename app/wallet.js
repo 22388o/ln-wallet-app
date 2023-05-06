@@ -1,11 +1,20 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Text, View, TouchableOpacity, SafeAreaView, RefreshControl, ScrollView, } from 'react-native'
-import { useRouter } from "expo-router"
+import { Text, View, TouchableOpacity, SafeAreaView, RefreshControl, ScrollView} from 'react-native'
+import { useRouter, Stack, Screen } from "expo-router"
 import { Image } from 'expo-image'
 import { styles } from '../components/styles'
 import { Feather } from '@expo/vector-icons'
 import { useAuth } from "../context/auth"
 import { getBalance } from "../hooks/getBalance"
+
+function LogoTitle() {
+  return (
+    <Image
+      style={{ width: 50, height: 50 }}
+      source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
+    />
+  );
+}
 
 export default function Wallet() {
   const [refreshing, setRefreshing] = useState(false)
@@ -32,6 +41,24 @@ export default function Wallet() {
 
   return (
     <SafeAreaView style={styles.container}>
+            <Stack.Screen
+        options={{
+          // https://reactnavigation.org/docs/headers#setting-the-header-title
+          title: "My home",
+          // https://reactnavigation.org/docs/headers#adjusting-header-styles
+          headerStyle: { backgroundColor: "black" },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          // https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
+          headerTitle: "",
+          headerLeft: () => <Feather name="home" size={24} color="white" onPress={() => {
+            router.push("/")}}/>,
+          headerRight: () => <Feather name="settings" size={24} color="white" onPress={() => {
+            router.push("/settingsModal")}}/>,
+        }}
+      />
       <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
