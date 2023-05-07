@@ -6,15 +6,7 @@ import { styles } from '../components/styles'
 import { Feather } from '@expo/vector-icons'
 import { useAuth } from "../context/auth"
 import { getBalance } from "../hooks/getBalance"
-
-function LogoTitle() {
-  return (
-    <Image
-      style={{ width: 50, height: 50 }}
-      source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
-    />
-  );
-}
+import History from "../components/history"
 
 export default function Wallet() {
   const [refreshing, setRefreshing] = useState(false)
@@ -37,7 +29,10 @@ export default function Wallet() {
     setBalance(walletBalance)
   }
 
-  useGetBalance()
+  useEffect(()=>{
+    useGetBalance()
+  }, [])
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -91,6 +86,7 @@ export default function Wallet() {
                 </TouchableOpacity>      
           </View>
         </View>
+        <History />
       </ScrollView>
     </SafeAreaView>
   );

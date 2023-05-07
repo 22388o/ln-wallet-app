@@ -1,5 +1,4 @@
 export const getBalance = async (user) => {
-        console.log("getting wallet details")
         try{
             const res = await fetch('https://legend.lnbits.com/api/v1/wallet', {
                 method: 'GET',
@@ -16,5 +15,6 @@ export const getBalance = async (user) => {
         }catch(error){
             console.error(error)
         }
+
     }
 
