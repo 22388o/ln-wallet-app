@@ -55,6 +55,7 @@ export default function Wallet() {
         }}
       />
       <ScrollView
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollView}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
