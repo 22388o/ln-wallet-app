@@ -2,14 +2,17 @@ import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Plat
 import { Stack } from "expo-router";
 import { useAuth } from "../../context/auth";
 import { useState } from 'react'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 export default function SignIn() {
   const { signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const handleSignIn = () => {
+    setLoading(true)
     signIn(email.toLocaleLowerCase(), password);
   }
 
@@ -49,8 +52,8 @@ return (
               onPress={handleSignIn}
             >
               <Text style={styles.text}>
-                Sign In
-              </Text>
+                {loading? "Loading" : "Sign In" }
+              </Text><MaterialCommunityIcons name="login" size={20} color="black" />
             </TouchableOpacity>
           </View>
         </View>
@@ -76,6 +79,8 @@ buttonContainer: {
   height: 140
 },
 button: {
+  flexDirection: "row",
+  justifyContent: "space-evenly",
   alignItems: 'center',
   backgroundColor: '#DDDDDD',
   padding: 10,
@@ -83,7 +88,7 @@ button: {
   width: 120,
 },
 text: {
-  fontSize: 24,
+  fontSize: 20,
 },
 textInput:{
   height: 40,

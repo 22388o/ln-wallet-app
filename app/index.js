@@ -1,6 +1,8 @@
 import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { useAuth } from "../context/auth";
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function Home() {
   const { signOut } = useAuth();
@@ -17,6 +19,7 @@ export default function Home() {
                 <Text style={styles.text}>
                   Wallet
                 </Text>
+                <Ionicons name="ios-wallet-outline" size={20} color="black" />
               </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
@@ -25,6 +28,7 @@ export default function Home() {
                 <Text style={styles.text}>
                   Sign Out
                 </Text>
+                <MaterialIcons name="logout" size={20} color="black" />
               </TouchableOpacity>
         </View>
       </View>
@@ -43,14 +47,16 @@ const styles = StyleSheet.create({
     height: 100
   },
   button: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 10,
     borderRadius: 10,
-    width: 120,
+    width: 140,
   },
   text: {
-    fontSize: 24,
+    fontSize: 20,
   },
   countContainer: {
     alignItems: 'center',

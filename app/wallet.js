@@ -7,6 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import { useAuth } from "../context/auth"
 import { getBalance } from "../hooks/getBalance"
 import History from "../components/history"
+import ShowHideButton from '../components/showHideButton'
 
 export default function Wallet() {
   const [refreshing, setRefreshing] = useState(false)
@@ -62,7 +63,10 @@ export default function Wallet() {
         }>
         <View style={styles.headerContainer}>
         <Text style={styles.header}>{name}</Text>
-        <Text style={styles.balance}>{balance} sats</Text>
+        <ShowHideButton> 
+        <Text style={styles.satBalance}>{balance} sats</Text>
+        </ShowHideButton>
+        </View>
         <Image 
         style={styles.logo} 
         source={user.profilePhoto} 
@@ -86,8 +90,8 @@ export default function Wallet() {
                   <Feather name="send" size={24} color="black" />
                 </TouchableOpacity>      
           </View>
-        </View>
-        <History />
+
+        <History/>
       </ScrollView>
     </SafeAreaView>
   );

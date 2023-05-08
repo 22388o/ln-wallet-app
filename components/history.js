@@ -24,20 +24,20 @@ const History = () => {
 <View style={{marginHorizontal: 25}}>
       <View style={{flexDirection: 'row', backgroundColor: '#DDDDDD', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
         <Text style={{padding: 10, flex: 1}}></Text>
-        <Text style={{padding: 10, flex: 2}}>Memo</Text>
+        <Text style={{padding: 10, flex: 3}}>Memo</Text>
         <Text style={{padding: 10, flex: 2}}>Date</Text>
         <Text style={{padding: 10, flex: 1}}>Sats</Text>
       </View>
-          <View style={{height: 180}}>
+          <View style={{height: 200}}>
           <ScrollView showsVerticalScrollIndicator={false} style={{borderBottomLeftRadius: 10, borderBottomRightRadius: 10, backgroundColor: '#fff'}}>
       {transactions && transactions.map(row => (
         <View key={row.memo} style={{flexDirection: 'row', backgroundColor: '#fff'}}>
           <Text style={{padding: 10, flex: 1}}>
             {row.type == "in"? <Feather name="arrow-down-left" size={24} color="black" />: <Feather name="arrow-up-right" size={24} color="black" />}
           </Text>
-          <Text style={{padding: 10, flex: 2, textAlign: "center"}}>{row.memo}</Text>
+          <Text style={{padding: 10, flex: 3, textAlign: "center"}}>{row.memo}</Text>
           <Text style={{padding: 10, flex: 2}}>{row.time}</Text>
-          <Text style={{padding: 10, flex: 1, textAlign: "center"}}>{row.amount}</Text>
+          <Text style={{padding: 10, flex: 2, textAlign: "center"}}>{row.amount}</Text>
         </View>
       ))}
     </ScrollView>

@@ -1,5 +1,7 @@
 import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
 import { useRouter } from "expo-router";
+import { Feather } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Home() {
 
@@ -15,7 +17,7 @@ export default function Home() {
               }}>
                 <Text style={styles.text}>
                   Sign In
-                </Text>
+                </Text><MaterialCommunityIcons name="login" size={20} color="black" />
               </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
@@ -25,7 +27,7 @@ export default function Home() {
               }}>
                 <Text style={styles.text}>
                   Sign Up
-                </Text>
+                </Text><Feather name="user-plus" size={20} color="black" />
               </TouchableOpacity>
         </View>
       </View>
@@ -44,6 +46,8 @@ const styles = StyleSheet.create({
     height: 100
   },
   button: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 10,
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
     width: 120,
   },
   text: {
-    fontSize: 24,
+    fontSize: 20,
   },
   countContainer: {
     alignItems: 'center',

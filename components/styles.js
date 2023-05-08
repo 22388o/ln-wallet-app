@@ -46,6 +46,7 @@ export const styles = StyleSheet.create({
   container2: {
     flexDirection: 'row',
     justifyContent: "center",
+    marginBottom:40
   },
   paragraph: {
     color: 'white',
@@ -61,7 +62,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   headerContainer: {
-    marginBottom:40
+    height: 110
   },
   header: {
     color: 'white',
@@ -75,6 +76,12 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 36,
   },
+  satBalance: {
+    color: 'orange',
+    textAlign: 'center',
+    fontSize: 36,
+    marginRight: 6,
+  },
   invoice: {
     color: 'orange',
     textAlign: 'center',
@@ -85,8 +92,8 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 200,
     width: 200,
-    marginTop:40,
-    marginBottom:30
+    marginTop:10,
+    marginBottom:10
   }, 
     button: {
     alignItems: 'center',

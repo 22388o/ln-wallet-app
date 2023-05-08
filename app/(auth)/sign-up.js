@@ -2,6 +2,7 @@ import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Plat
 import { Stack } from "expo-router";
 import { useAuth } from "../../context/auth";
 import { useState } from 'react'
+import { Feather } from '@expo/vector-icons';
 
 
 export default function SignIn() {
@@ -78,7 +79,7 @@ return (
             >
               <Text style={styles.text}>
                 Sign Up
-              </Text>
+              </Text><Feather name="user-plus" size={20} color="black" />
             </TouchableOpacity>
           </View>
         </View>
@@ -103,6 +104,8 @@ buttonContainer: {
   alignItems: 'center',
 },
 button: {
+  flexDirection: "row",
+  justifyContent: "space-evenly",
   alignItems: 'center',
   backgroundColor: '#DDDDDD',
   padding: 10,
@@ -110,7 +113,7 @@ button: {
   width: 120,
 },
 text: {
-  fontSize: 24,
+  fontSize: 20,
 },
 textInput:{
   height: 40,
