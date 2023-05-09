@@ -26,7 +26,7 @@ return (
         <SafeAreaView style={styles.container}>
         <Stack.Screen 
         options={{
-          headerStyle: { backgroundColor: "black" },
+          headerStyle: { backgroundColor: "#f1f1f1" },
           headerTitle: "",
           headerShadowVisible: false, 
           }} 
@@ -37,7 +37,7 @@ return (
               style={styles.textInput} 
               value={email}
               placeholder="Email"
-              placeholderTextColor="white"
+              placeholderTextColor="black"
               onChangeText={setEmail}
             />
             <TextInput 
@@ -45,14 +45,14 @@ return (
               secureTextEntry={true}
               value={password}
               placeholder="Password"
-              placeholderTextColor="white"
+              placeholderTextColor="black"
               onChangeText={setPassword}
             />
             <TextInput 
               style={styles.textInput} 
               value={profilePhoto}
               placeholder="Profile photo url"
-              placeholderTextColor="white"
+              placeholderTextColor="black"
               onChangeText={setProfilePhoto}
             />
             <TextInput 
@@ -60,7 +60,7 @@ return (
               secureTextEntry={true}
               value={apiKey}
               placeholder="LNbits API Key"
-              placeholderTextColor="white"
+              placeholderTextColor="black"
               onChangeText={setApiKey}
             />
             <TextInput 
@@ -68,7 +68,7 @@ return (
               secureTextEntry={true}
               value={adminKey}
               placeholder="LNbits Admin Key"
-              placeholderTextColor="white"
+              placeholderTextColor="black"
               onChangeText={setAdminKey}
             />
           </View>
@@ -97,7 +97,7 @@ container: {
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'black'
+  backgroundColor: "#f1f1f1"
 },
 buttonContainer: {
   justifyContent: 'center',
@@ -107,7 +107,7 @@ button: {
   flexDirection: "row",
   justifyContent: "space-evenly",
   alignItems: 'center',
-  backgroundColor: '#DDDDDD',
+  backgroundColor: '#a8a8a8',
   padding: 10,
   borderRadius: 10,
   width: 120,
@@ -119,7 +119,8 @@ textInput:{
   height: 40,
   margin: 10,
   borderWidth: 1,
-  borderColor: 'white',
+  borderColor: 'black',
+  backgroundColor: 'white',
   borderRadius: 10,
   color: 'white',
   width: 240,

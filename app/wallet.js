@@ -42,7 +42,7 @@ export default function Wallet() {
           // https://reactnavigation.org/docs/headers#setting-the-header-title
           title: "My home",
           // https://reactnavigation.org/docs/headers#adjusting-header-styles
-          headerStyle: { backgroundColor: "white" },
+          headerStyle: { backgroundColor: "#f1f1f1" },
           headerTintColor: "black",
           headerTitleStyle: {
             fontWeight: "bold",

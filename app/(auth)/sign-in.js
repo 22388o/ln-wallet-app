@@ -25,7 +25,7 @@ return (
         <SafeAreaView style={styles.container}>
         <Stack.Screen 
         options={{
-          headerStyle: { backgroundColor: "white" },
+          headerStyle: { backgroundColor: "#f1f1f1" },
           headerTitle: "",
           headerShadowVisible: false, 
           }} 
@@ -85,7 +85,7 @@ container: {
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'white'
+  backgroundColor: "#f1f1f1",
 },
 buttonContainer: {
   justifyContent: 'center',
@@ -96,7 +96,7 @@ button: {
   flexDirection: "row",
   justifyContent: "space-evenly",
   alignItems: 'center',
-  backgroundColor: '#DDDDDD',
+  backgroundColor: '#a8a8a8',
   padding: 10,
   borderRadius: 10,
   width: 120,
@@ -109,6 +109,7 @@ textInput:{
   margin: 12,
   borderWidth: 1,
   borderColor: 'black',
+  backgroundColor: "white",
   borderRadius: 10,
   color: 'black',
   width: 240,
