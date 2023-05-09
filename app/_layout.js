@@ -8,10 +8,10 @@ export default function Root() {
   return (
     // Setup the auth context and render our layout inside of it.
     <Provider>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
         <Stack
           screenOptions={{
-          headerStyle: { backgroundColor: "black" },
+          headerStyle: { backgroundColor: "white" },
           headerTitle: "",
           headerShadowVisible: false, 
         }} 
@@ -24,7 +24,7 @@ export default function Root() {
           presentation: "modal",
           headerTitle: "",
           headerTintColor: 'white',
-          headerStyle: { backgroundColor: "black" },
+          headerStyle: { backgroundColor: "white" },
         }}
       />
         <Stack.Screen
@@ -34,7 +34,7 @@ export default function Root() {
           presentation: "modal",
           headerTitle: "",
           headerTintColor: 'white',
-          headerStyle: { backgroundColor: "black" },
+          headerStyle: { backgroundColor: "white" },
         }}
       />
       <Stack.Screen
@@ -43,8 +43,8 @@ export default function Root() {
           // Set the presentation mode to modal for our modal route.
           presentation: "modal",
           headerTitle: "",
-          headerTintColor: 'white',
-          headerStyle: { backgroundColor: "black" },
+          headerTintColor: 'black',
+          headerStyle: { backgroundColor: "white" },
         }}
       />
     </Stack>

@@ -42,16 +42,16 @@ export default function Wallet() {
           // https://reactnavigation.org/docs/headers#setting-the-header-title
           title: "My home",
           // https://reactnavigation.org/docs/headers#adjusting-header-styles
-          headerStyle: { backgroundColor: "black" },
-          headerTintColor: "#fff",
+          headerStyle: { backgroundColor: "white" },
+          headerTintColor: "black",
           headerTitleStyle: {
             fontWeight: "bold",
           },
           // https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
           headerTitle: "",
-          headerLeft: () => <Feather name="home" size={24} color="white" onPress={() => {
+          headerLeft: () => <Feather name="home" size={24} color="black" onPress={() => {
             router.push("/")}}/>,
-          headerRight: () => <Feather name="settings" size={24} color="white" onPress={() => {
+          headerRight: () => <Feather name="settings" size={24} color="black" onPress={() => {
             router.push("/settingsModal")}}/>,
         }}
       />
@@ -64,7 +64,7 @@ export default function Wallet() {
         <View style={styles.headerContainer}>
         <Text style={styles.header}>{name}</Text>
         <ShowHideButton> 
-        <Text style={styles.satBalance}>{balance} sats</Text>
+        <Text style={styles.satBalance}>⚡{balance}</Text>
         </ShowHideButton>
         </View>
         <Image 

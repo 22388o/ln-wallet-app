@@ -41,7 +41,7 @@ const History = () => {
         <Text style={{padding: 10, flex: 2}}>Date</Text>
         <Text style={{padding: 10, flex: 1}}>Sats</Text>
       </View>
-          <View style={{height: 200}}>
+          <View style={{height: 300}}>
           <ScrollView showsVerticalScrollIndicator={false} style={{borderBottomLeftRadius: 10, borderBottomRightRadius: 10, backgroundColor: '#fff'}}
           refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

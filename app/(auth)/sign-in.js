@@ -25,7 +25,7 @@ return (
         <SafeAreaView style={styles.container}>
         <Stack.Screen 
         options={{
-          headerStyle: { backgroundColor: "black" },
+          headerStyle: { backgroundColor: "white" },
           headerTitle: "",
           headerShadowVisible: false, 
           }} 
@@ -85,7 +85,7 @@ container: {
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'black'
+  backgroundColor: 'white'
 },
 buttonContainer: {
   justifyContent: 'center',
@@ -108,9 +108,9 @@ textInput:{
   height: 40,
   margin: 12,
   borderWidth: 1,
-  borderColor: 'white',
+  borderColor: 'black',
   borderRadius: 10,
-  color: 'white',
+  color: 'black',
   width: 240,
   padding: 10,
   fontSize: 20,
@@ -118,7 +118,7 @@ textInput:{
   textAlign: 'center',
 },
 textInputLabel: {
-  color: 'white',
+  color: 'black',
   fontSize: 24,
 },
 });
