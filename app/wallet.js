@@ -91,7 +91,7 @@ export default function Wallet() {
                 </TouchableOpacity>      
           </View>
 
-        <History/>
+        <History />
       </ScrollView>
     </SafeAreaView>
   );

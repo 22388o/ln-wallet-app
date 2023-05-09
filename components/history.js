@@ -1,25 +1,32 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, ActivityIndicator  } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getHistory } from "../hooks/getHistory"
 import { useAuth } from "../context/auth"
 import { Feather } from '@expo/vector-icons';
 
 
+
 const History = () => {
     const [ transactions, setTransactions ] = useState([])
+    const [loading, setLoading] = useState(false)
     const { user } = useAuth()
 
     const useGetHistory = async () => {
+        setLoading(true)
         const transactionData = await getHistory(user)
-        console.log("wallet page TransactionData: ", transactionData)
-        setTransactions(transactionData)
+        setTimeout(() => {
+          setLoading(false)
+          setTransactions(transactionData)
+        }, 2000)   
+        
     }
 
     useEffect(()=>{
         useGetHistory()
-        console.log("transactions", transactions)
       }, [])
 
+
+      
   return (
 <View style={{marginHorizontal: 25}}>
       <View style={{flexDirection: 'row', backgroundColor: '#DDDDDD', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
@@ -30,8 +37,14 @@ const History = () => {
       </View>
           <View style={{height: 200}}>
           <ScrollView showsVerticalScrollIndicator={false} style={{borderBottomLeftRadius: 10, borderBottomRightRadius: 10, backgroundColor: '#fff'}}>
-      {transactions && transactions.map(row => (
-        <View key={row.memo} style={{flexDirection: 'row', backgroundColor: '#fff'}}>
+          {loading? (
+            <View style={{height:180, flex: 1, alignItems: "center", justifyContent: "center"}}>
+              <ActivityIndicator size="large" color="black" />
+            </View>
+          ):(
+            <View>
+                    {transactions && transactions.map(row => (
+        <View key={row.id} style={{flexDirection: 'row', backgroundColor: '#fff'}}>
           <Text style={{padding: 10, flex: 1}}>
             {row.type == "in"? <Feather name="arrow-down-left" size={24} color="black" />: <Feather name="arrow-up-right" size={24} color="black" />}
           </Text>
@@ -40,6 +53,9 @@ const History = () => {
           <Text style={{padding: 10, flex: 2, textAlign: "center"}}>{row.amount}</Text>
         </View>
       ))}
+            </View>
+          )}
+
     </ScrollView>
     </View>
     </View>

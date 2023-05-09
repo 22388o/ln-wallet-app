@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ActivityIndicator } from "react-native";
 import { Stack } from "expo-router";
 import { useAuth } from "../../context/auth";
 import { useState } from 'react'
@@ -47,14 +47,28 @@ return (
             />
           </View>
           <View style={styles.buttonContainer}>
+            {loading?  (<View>
             <TouchableOpacity 
               style={styles.button}
               onPress={handleSignIn}
             >
               <Text style={styles.text}>
-                {loading? "Loading" : "Sign In" }
-              </Text><MaterialCommunityIcons name="login" size={20} color="black" />
-            </TouchableOpacity>
+                Loading
+              </Text>
+              <ActivityIndicator size="small" color="black"/>
+              </TouchableOpacity>
+                </View>
+                ):(
+                <View>
+                  <TouchableOpacity 
+              style={styles.button}
+              onPress={handleSignIn}
+            >
+              <Text style={styles.text}>
+                Sign In
+              </Text>
+              <MaterialCommunityIcons name="login" size={20} color="black" /></TouchableOpacity>
+              </View>)}
           </View>
         </View>
       </SafeAreaView>

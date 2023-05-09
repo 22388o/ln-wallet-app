@@ -10,6 +10,7 @@ export const getHistory = async (user) => {
         })
         const data = await res.json()
         const transactionData = data.length > 1 && data.map(transaction => ({
+            id: transaction.checking_id,
             memo: transaction.memo,
             time: new Date(transaction.time * 1000).toLocaleString(),
             amount: transaction.amount* 0.001,
