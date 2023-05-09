@@ -15,7 +15,7 @@ export default function Modal() {
     const [invoice, setInvoice] = useState()
     const [invoiceText, onChangeInvoiceText] = useState('')
     const navigation = useNavigation()
-    const router = useRouter()
+    const [copied, setCopied] = useState(false)
     const { user } = useAuth()
 
   // If the page was reloaded or navigated to directly, then the modal should be presented as
@@ -24,7 +24,8 @@ export default function Modal() {
 
   const copyToClipboard = async () => {
     await Clipboard.setStringAsync(invoice)
-    alert('COPIED!')
+    setCopied(true)
+    
   };
 
   const onPressGenerateInvoice = async () => {
@@ -50,19 +51,24 @@ export default function Modal() {
                 {invoice}
               </Text>
               <View style={styles.container2}>
+                {copied?
+                <>
+                <TouchableOpacity 
+                style={styles.copyButton}
+                >
+                <Text style={styles.copyButtonText}>Copied!
+                </Text><Feather name="copy" size={24} color="black" />
+                </TouchableOpacity>
+                </>
+                :
+                <>
                 <TouchableOpacity 
                 style={styles.copyButton}
                 onPress={copyToClipboard}>
                 <Text style={styles.copyButtonText}>Copy
                 </Text><Feather name="copy" size={24} color="black" />
                 </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.Invoicebuttons}
-                  onPress={() => {
-                    router.push("../")
-                    }}>
-                  <Text style={styles.buttonText}>Close</Text>
-                </TouchableOpacity>
+                </>}
               </View>
             </> : <>
               <Text style={styles.subheadline}>Enter Amount</Text>
@@ -77,14 +83,6 @@ export default function Modal() {
                   onPress={onPressGenerateInvoice}
                 >
                 <Text style={styles.sendButtonText}>Create Invoice</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.Invoicebuttons}
-                  onPress={() => {
-                  router.push("../")
-                  }}
-                >
-                <Text style={styles.buttonText}>Close</Text>
                 </TouchableOpacity>
                 </View>
             </>

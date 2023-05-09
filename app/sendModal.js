@@ -14,7 +14,6 @@ export default function Modal() {
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false)
     const navigation = useNavigation();
-    const router = useRouter()
     const { user } = useAuth();
 
   // If the page was reloaded or navigated to directly, then the modal should be presented as
@@ -36,7 +35,6 @@ export default function Modal() {
         })
       });
       setTimeout(() => {
-        console.log(response)
         setLoading(false)
         setMessage("Payment Sent!")
       }, 2000)   
@@ -84,14 +82,6 @@ export default function Modal() {
                             <Feather name="send" size={24} color="black" />
                         </TouchableOpacity>
                           </View>)}
-                        <TouchableOpacity
-                            style={styles.Invoicebuttons}
-                            onPress={() => {
-                            router.push("../")
-                            }}
-                        >
-                            <Text style={styles.buttonText}>Close</Text>
-                        </TouchableOpacity>
                     </View>
                   <Text style={styles.balance}>
                       {message}
