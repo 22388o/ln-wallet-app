@@ -5,10 +5,10 @@ A lightning wallet app. The ui is made using react native, and the backend uses 
 
 ## How to use it. 
 You can't, securely... This is not intended to be used with large amounts of sats. If you want to test it out, you can do the following: 
-- 1. make a free lighting wallet on https://legend.lnbits.com
-- 2. download the git hub repo, and run it on an android or ios simulator. 
-- 3. run the app, and sign up for an account. (you will need to add you lnbits admin and invoice/read key.)
-- 4. start sending and receiving sats. 
+1. make a free lighting wallet on https://legend.lnbits.com
+2. download the git hub repo, and run it on an android or ios simulator. 
+3. run the app, and sign up for an account. (you will need to add you lnbits admin and invoice/read key.)
+4. start sending and receiving sats. 
 
 ## Screenshots
 ![IMG_9177](https://github.com/medranomiler/ln-wallet-app/assets/67513942/e4f78aeb-fb82-4e9b-be51-495c16b1a9c7)
