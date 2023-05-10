@@ -35,7 +35,7 @@ const History = () => {
       
   return (
 <View style={{marginHorizontal: 25}}>
-      <View style={{flexDirection: 'row', backgroundColor: '#a8a8a8', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+      <View style={{flexDirection: 'row', backgroundColor: '#e2e8f0', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
         <Text style={{padding: 10, flex: 1}}></Text>
         <Text style={{padding: 10, flex: 3, textAlign: "center"}}>Memo</Text>
         <Text style={{padding: 10, flex: 2}}>Date</Text>

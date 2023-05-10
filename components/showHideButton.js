@@ -12,8 +12,8 @@ function ShowHideButton({ children }) {
   return (
     <View style={{flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
       {showContent && children}        
-      {showContent ? <MaterialCommunityIcons name="eye" size={24} color="#a8a8a8" onPress={toggleContent}/> : 
-        <MaterialCommunityIcons name="eye-off" size={24} color="#a8a8a8" onPress={toggleContent}/>
+      {showContent ? <MaterialCommunityIcons name="eye" size={24} color="#e2e8f0" onPress={toggleContent}/> : 
+        <MaterialCommunityIcons name="eye-off" size={24} color="#e2e8f0" onPress={toggleContent}/>
         }
     </View>
   );

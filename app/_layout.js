@@ -11,7 +11,7 @@ export default function Root() {
       <StatusBar style="dark" />
         <Stack
           screenOptions={{
-          headerStyle: { backgroundColor: "#f1f1f1" },
+          headerStyle: { backgroundColor: "#f8fafc" },
           headerTitle: "",
           headerShadowVisible: false, 
         }} 
@@ -24,7 +24,7 @@ export default function Root() {
           presentation: "modal",
           headerTitle: "",
           headerTintColor: 'white',
-          headerStyle: { backgroundColor: "#f1f1f1" },
+          headerStyle: { backgroundColor: "#f8fafc" },
         }}
       />
         <Stack.Screen
@@ -34,7 +34,7 @@ export default function Root() {
           presentation: "modal",
           headerTitle: "",
           headerTintColor: 'white',
-          headerStyle: { backgroundColor: "#f1f1f1" },
+          headerStyle: { backgroundColor: "#f8fafc" },
         }}
       />
       <Stack.Screen
@@ -44,7 +44,7 @@ export default function Root() {
           presentation: "modal",
           headerTitle: "",
           headerTintColor: 'black',
-          headerStyle: { backgroundColor: "#f1f1f1" },
+          headerStyle: { backgroundColor: "#f8fafc" },
         }}
       />
     </Stack>

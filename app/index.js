@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f1f1f1'
+    backgroundColor: '#f8fafc'
   },
   buttonContainer: {
     justifyContent: 'center',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: 'center',
-    backgroundColor: '#a8a8a8',
+    backgroundColor: '#e2e8f0',
     padding: 10,
     borderRadius: 10,
     width: 140,
