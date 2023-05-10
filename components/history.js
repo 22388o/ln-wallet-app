@@ -38,8 +38,8 @@ const History = () => {
       <View style={{flexDirection: 'row', backgroundColor: '#e2e8f0', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
         <Text style={{padding: 10, flex: 1}}></Text>
         <Text style={{padding: 10, flex: 3, textAlign: "center"}}>Memo</Text>
-        <Text style={{padding: 10, flex: 2}}>Date</Text>
-        <Text style={{padding: 10, flex: 1}}>Sats</Text>
+        <Text style={{padding: 10, flex: 2, textAlign: "center"}}>Date</Text>
+        <Text style={{padding: 10, flex: 2, textAlign: "center"}}>Sats</Text>
       </View>
           <View style={{height: 300}}>
           <ScrollView showsVerticalScrollIndicator={false} style={{borderBottomLeftRadius: 10, borderBottomRightRadius: 10, backgroundColor: '#fff'}}
@@ -52,7 +52,7 @@ const History = () => {
             {row.type == "in"? <Feather name="arrow-down-left" size={24} color="black" />: <Feather name="arrow-up-right" size={24} color="black" />}
           </Text>
           <Text style={{padding: 10, flex: 3, textAlign: "center"}}>{row.memo}</Text>
-          <Text style={{padding: 10, flex: 2}}>{row.time}</Text>
+          <Text style={{padding: 10, flex: 2, textAlign: "center", fontSize: 12}}>{row.time}</Text>
           <Text style={{padding: 10, flex: 2, textAlign: "center"}}>{row.amount}</Text>
         </View>
       ))}
