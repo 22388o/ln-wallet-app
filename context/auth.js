@@ -1,6 +1,7 @@
 import { useRouter, useSegments } from "expo-router";
 import React from "react";
 import { compare } from "react-native-bcrypt"
+import * as SecureStore from 'expo-secure-store';
 
 
 const AuthContext = React.createContext(null);
@@ -48,6 +49,11 @@ export const signUp = async (email, password, profilePhoto, apiKey, adminKey) =>
 export function Provider(props) {
   const [user, setAuth] = React.useState(null);
 
+  async function save(key, value) {
+    await SecureStore.setItemAsync(key, value);
+  }
+  
+
   useProtectedRoute(user);
 
   const signIn = async (email, password) => {
@@ -64,6 +70,8 @@ export function Provider(props) {
       console.log("Login API response received. Authenticating user credentials ")
       const validEmail = user.email
       const validPassword = user.password
+      const apiKey = user.apiKey
+      const adminKey = user.adminKey
     // Authenticate user with email and password.
     const passwordMatch = new Promise((resolve, reject) => {
       compare(password, validPassword, (error, result) => {
@@ -77,6 +85,8 @@ export function Provider(props) {
   
     if (email === validEmail && (await passwordMatch)) {
       console.log("Success! User logged in")
+      save("apiKey", apiKey)
+      save("adminKey", adminKey)
       setAuth(user); // Set user info
       return true;
     } else {

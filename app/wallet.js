@@ -25,7 +25,7 @@ export default function Wallet() {
   }, [])
 
   const useGetBalance = async () => {
-    const [walletName, walletBalance] = await getBalance(user)
+    const [walletName, walletBalance] = await getBalance()
     setName(walletName)
     setBalance(walletBalance)
   }

@@ -1,9 +1,17 @@
-export const getBalance = async (user) => {
+import * as SecureStore from 'expo-secure-store'
+
+export const getBalance = async () => {
+    async function getValueFor(key) {
+        let result = await SecureStore.getItemAsync(key);
+        return result
+    }
+
         try{
+            const apiKey = await getValueFor("apiKey")
             const res = await fetch('https://legend.lnbits.com/api/v1/wallet', {
                 method: 'GET',
                 headers: {
-                    'X-Api-Key': user.apiKey,
+                    'X-Api-Key': apiKey,
                     'Content-Type': 'application/json'
                 }
             })
@@ -15,6 +23,7 @@ export const getBalance = async (user) => {
         }catch(error){
             console.error(error)
         }
+
 
     }
 

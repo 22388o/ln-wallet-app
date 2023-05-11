@@ -9,11 +9,10 @@ import { getBalance } from "../hooks/getBalance"
 import { useAuth } from "../context/auth"
 import { generateInvoice } from "../hooks/generateInvoice"
 
-
-
 export default function Modal() {
     const [invoice, setInvoice] = useState()
-    const [invoiceText, onChangeInvoiceText] = useState('')
+    const [invoiceAmount, setInvoiceAmount] = useState('')
+    const [invoiceMemo, setInvoiceMemo] = useState('')
     const navigation = useNavigation()
     const [copied, setCopied] = useState(false)
     const { user } = useAuth()
@@ -29,7 +28,7 @@ export default function Modal() {
   };
 
   const onPressGenerateInvoice = async () => {
-    const invoiceHash = await generateInvoice(user, invoiceText)
+    const invoiceHash = await generateInvoice(invoiceAmount, invoiceMemo)
     setInvoice(invoiceHash)
   };
   
@@ -46,7 +45,7 @@ export default function Modal() {
             <View>
               <Text style={styles.header}>RECEIVE SATS</Text>
             {invoice && invoice !== " " ? <>
-              <Text style={styles.subheadline}>{invoiceText} Sat Invoice Created</Text>
+              <Text style={styles.subheadline}>{invoiceAmount} Sat Invoice Created for {invoiceMemo}</Text>
               <Text style={styles.invoice}>
                 {invoice}
               </Text>
@@ -71,11 +70,17 @@ export default function Modal() {
                 </>}
               </View>
             </> : <>
-              <Text style={styles.subheadline}>Enter Amount</Text>
+              <Text style={styles.subheadline}>Amount</Text>
               <TextInput
                 style={styles.textInputAmount} 
-                onChangeText={onChangeInvoiceText}
-                value={invoiceText} 
+                onChangeText={setInvoiceAmount}
+                value={invoiceAmount} 
+              />
+              <Text style={styles.subheadline}>Memo</Text>
+              <TextInput
+                style={styles.textInputAmount} 
+                onChangeText={setInvoiceMemo}
+                value={invoiceMemo} 
               />
               <View style={styles.container2}>
                 <TouchableOpacity

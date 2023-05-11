@@ -1,10 +1,17 @@
-export const getHistory = async (user) => {
+import * as SecureStore from 'expo-secure-store'
+
+export const getHistory = async () => {
     console.log("getting transactions")
+    async function getValueFor(key) {
+        let result = await SecureStore.getItemAsync(key);
+        return result
+    }
     try {
+        const adminKey = await getValueFor("adminKey")
         const res = await fetch('https://legend.lnbits.com/api/v1/payments', {
             method: 'GET',
             headers: {
-                'X-Api-Key': user.adminKey,
+                'X-Api-Key': adminKey,
                 'Content-Type': 'application/json'
             }
         })

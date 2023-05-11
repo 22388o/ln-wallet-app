@@ -1,8 +1,10 @@
-import { Text, View, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Text, View, Button, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Stack } from "expo-router";
 import { useAuth } from "../../context/auth";
 import { useState } from 'react'
 import { Feather } from '@expo/vector-icons';
+import * as Linking from 'expo-linking';
+import * as WebBrowser from 'expo-web-browser';
 
 
 export default function SignIn() {
@@ -33,6 +35,25 @@ return (
           />
         <View>
           <View style={styles.buttonContainer}>
+          <Button
+          title="Get an LNbits wallet"
+          onPress={() => Linking.openURL('https://legend.lnbits.com')}/>
+          <TextInput 
+              style={styles.textInput} 
+              secureTextEntry={true}
+              value={apiKey}
+              placeholder="LNbits Invoice/Read Key"
+              placeholderTextColor="black"
+              onChangeText={setApiKey}
+            />
+            <TextInput 
+              style={styles.textInput} 
+              secureTextEntry={true}
+              value={adminKey}
+              placeholder="LNbits Admin Key"
+              placeholderTextColor="black"
+              onChangeText={setAdminKey}
+            />
             <TextInput 
               style={styles.textInput} 
               value={email}
@@ -54,22 +75,6 @@ return (
               placeholder="Profile photo url"
               placeholderTextColor="black"
               onChangeText={setProfilePhoto}
-            />
-            <TextInput 
-              style={styles.textInput} 
-              secureTextEntry={true}
-              value={apiKey}
-              placeholder="LNbits API Key"
-              placeholderTextColor="black"
-              onChangeText={setApiKey}
-            />
-            <TextInput 
-              style={styles.textInput} 
-              secureTextEntry={true}
-              value={adminKey}
-              placeholder="LNbits Admin Key"
-              placeholderTextColor="black"
-              onChangeText={setAdminKey}
             />
           </View>
           <View style={styles.buttonContainer}>
@@ -115,6 +120,9 @@ button: {
 text: {
   fontSize: 20,
 },
+text: {
+  fontSize: 20,
+},
 textInput:{
   height: 40,
   margin: 10,
@@ -122,7 +130,7 @@ textInput:{
   borderColor: 'black',
   backgroundColor: 'white',
   borderRadius: 10,
-  color: 'white',
+  color: 'black',
   width: 240,
   padding: 10,
   fontSize: 20,

@@ -6,6 +6,8 @@ import { Feather } from '@expo/vector-icons';
 import { styles } from '../components/styles';
 // import useGetBalance from "../hooks/useGetBalance"
 import { useAuth } from "../context/auth"
+import * as SecureStore from 'expo-secure-store'
+
 
 
 
@@ -16,17 +18,23 @@ export default function Modal() {
     const navigation = useNavigation();
     const { user } = useAuth();
 
+    async function getValueFor(key) {
+      let result = await SecureStore.getItemAsync(key);
+      return result
+  }
+
   // If the page was reloaded or navigated to directly, then the modal should be presented as
   // a full screen page. You may need to change the UI to account for this.
     const isPresented = navigation.canGoBack();
 
     const send = async () => {
     setLoading(true)
+    const adminKey = await getValueFor("adminKey")
     try {
       const response = await fetch('https://legend.lnbits.com/api/v1/payments', {
         method: 'POST',
         headers: {
-          'X-Api-Key': user.adminKey,
+          'X-Api-Key': adminKey,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({

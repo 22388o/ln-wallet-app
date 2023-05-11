@@ -32,6 +32,22 @@ return (
           />
         <View>
           <View style={styles.buttonContainer}>
+          <TextInput 
+              style={styles.textInput} 
+              secureTextEntry={true}
+              value={apiKey}
+              placeholder="LNbits Invoice/Read Key"
+              placeholderTextColor="black"
+              onChangeText={setApiKey}
+            />
+            <TextInput 
+              style={styles.textInput} 
+              secureTextEntry={true}
+              value={adminKey}
+              placeholder="LNbits Admin Key"
+              placeholderTextColor="black"
+              onChangeText={setAdminKey}
+            />
             <TextInput 
               style={styles.textInput} 
               value={email}
@@ -53,22 +69,6 @@ return (
               placeholder="Profile photo url"
               placeholderTextColor="black"
               onChangeText={setProfilePhoto}
-            />
-            <TextInput 
-              style={styles.textInput} 
-              secureTextEntry={true}
-              value={apiKey}
-              placeholder="LNbits API Key"
-              placeholderTextColor="black"
-              onChangeText={setApiKey}
-            />
-            <TextInput 
-              style={styles.textInput} 
-              secureTextEntry={true}
-              value={adminKey}
-              placeholder="LNbits Admin Key"
-              placeholderTextColor="black"
-              onChangeText={setAdminKey}
             />
           </View>
           <View style={styles.buttonContainer}>
