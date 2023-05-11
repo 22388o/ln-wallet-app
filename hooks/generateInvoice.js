@@ -1,10 +1,6 @@
-import * as SecureStore from 'expo-secure-store'
+import { getValueFor } from "./getKeys"
 
 export const generateInvoice = async (invoiceAmount, invoiceMemo) => {
-  async function getValueFor(key) {
-    let result = await SecureStore.getItemAsync(key);
-    return result
-}
   try {
     console.log("generating invoice")
     const apiKey = await getValueFor("apiKey")

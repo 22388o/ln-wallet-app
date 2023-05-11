@@ -1,11 +1,6 @@
-import * as SecureStore from 'expo-secure-store'
+import { getValueFor } from "./getKeys"
 
 export const getBalance = async () => {
-    async function getValueFor(key) {
-        let result = await SecureStore.getItemAsync(key);
-        return result
-    }
-
         try{
             const apiKey = await getValueFor("apiKey")
             const res = await fetch('https://legend.lnbits.com/api/v1/wallet', {

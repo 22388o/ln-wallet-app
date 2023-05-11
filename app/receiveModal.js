@@ -5,8 +5,6 @@ import { StatusBar } from "expo-status-bar"
 import * as Clipboard from 'expo-clipboard'
 import { Feather } from '@expo/vector-icons'
 import { styles } from '../components/styles'
-import { getBalance } from "../hooks/getBalance"
-import { useAuth } from "../context/auth"
 import { generateInvoice } from "../hooks/generateInvoice"
 
 export default function Modal() {
@@ -15,7 +13,6 @@ export default function Modal() {
     const [invoiceMemo, setInvoiceMemo] = useState('')
     const navigation = useNavigation()
     const [copied, setCopied] = useState(false)
-    const { user } = useAuth()
 
   // If the page was reloaded or navigated to directly, then the modal should be presented as
   // a full screen page. You may need to change the UI to account for this.

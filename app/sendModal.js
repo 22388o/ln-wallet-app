@@ -4,57 +4,26 @@ import { useNavigation, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from '@expo/vector-icons';
 import { styles } from '../components/styles';
-// import useGetBalance from "../hooks/useGetBalance"
-import { useAuth } from "../context/auth"
-import * as SecureStore from 'expo-secure-store'
-
-
-
+import { payInvoice } from "../hooks/payInvoice"
 
 export default function Modal() {
-    const [text, onChangeText] = useState('');
-    const [message, setMessage] = useState('');
+    const [invoice, setInvoice] = useState('');
     const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState('');
     const navigation = useNavigation();
-    const { user } = useAuth();
-
-    async function getValueFor(key) {
-      let result = await SecureStore.getItemAsync(key);
-      return result
-  }
 
   // If the page was reloaded or navigated to directly, then the modal should be presented as
   // a full screen page. You may need to change the UI to account for this.
     const isPresented = navigation.canGoBack();
 
-    const send = async () => {
-    setLoading(true)
-    const adminKey = await getValueFor("adminKey")
-    try {
-      const response = await fetch('https://legend.lnbits.com/api/v1/payments', {
-        method: 'POST',
-        headers: {
-          'X-Api-Key': adminKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          out: true,
-          bolt11: text,
-        })
-      });
+    const onPressPayInvoice = async () => {
+      setLoading(true)
+      const message = await payInvoice(invoice)
       setTimeout(() => {
-        setLoading(false)
-        setMessage("Payment Sent!")
-      }, 2000)   
-  }catch (error) {
-      setTimeout(() => {
-        setLoading(false)
-        setMessage("Error Sending Payment!")
-        console.error(error);
-      }, 2000)  
-  }
-  }
-
+      setMessage(message)
+      setLoading(false)
+    }, 2000)  
+    };
 
     return (
       <KeyboardAvoidingView
@@ -69,14 +38,14 @@ export default function Modal() {
                   <Text style={styles.subheadline}>Enter Invoice</Text>
                   <TextInput
                     style={styles.textInputAmount} 
-                    onChangeText={onChangeText}
-                    value={text} />
+                    onChangeText={setInvoice}
+                    value={invoice} />
                     <View style={styles.container2}>
                         {loading? (
                         <View>
                         <TouchableOpacity
                           style={styles.sendButton}
-                          onPress={send}
+                          
                         >
                             <Text style={styles.sendButtonText}>Sending</Text>
                             <ActivityIndicator size="small" color="black"/>
@@ -84,7 +53,7 @@ export default function Modal() {
                         </View>):(<View>
                         <TouchableOpacity
                           style={styles.sendButton}
-                          onPress={send}
+                          onPress={onPressPayInvoice}
                         >
                             <Text style={styles.sendButtonText}>Send</Text>
                             <Feather name="send" size={24} color="black" />

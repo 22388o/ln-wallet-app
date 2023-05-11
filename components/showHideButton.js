@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Button } from "react-native"
+import React, { useState } from "react";
+import { View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 function ShowHideButton({ children }) {
@@ -10,11 +10,18 @@ function ShowHideButton({ children }) {
   };
 
   return (
-    <View style={{flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-      {showContent && children}        
-      {showContent ? <MaterialCommunityIcons name="eye" size={24} color="#e2e8f0" onPress={toggleContent}/> : 
-        <MaterialCommunityIcons name="eye-off" size={24} color="#e2e8f0" onPress={toggleContent}/>
-        }
+    <View>
+      {showContent?(
+        <TouchableOpacity onPress={toggleContent}>
+          <View>{children}</View>
+        </TouchableOpacity>
+      ):(
+        <TouchableOpacity onPress={toggleContent}>
+          <View style={{alignSelf:"center", flexDirection:"row"}}>
+            <MaterialCommunityIcons name="eye-off" size={36} color="#e2e8f0" />
+            </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
